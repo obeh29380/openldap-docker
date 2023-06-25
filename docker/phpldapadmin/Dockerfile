@@ -1,0 +1,1 @@
+FROM mirantis/phpldapadmin:v0.6.12

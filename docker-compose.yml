@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  ldap:
+    build:
+      context: .
+      dockerfile: ./docker/ldap/Dockerfile
+    ports:
+      - '1389:1389'
+    tty: true
+    volumes:
+      - ./ldap/ldifs:/ldifs
+    environment:
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_ROOT=dc=example,dc=org
+    #  - LDAP_PORT_NUMBER=389
+  phpldapadmin:
+    build:
+      context: .
+      dockerfile: ./docker/phpldapadmin/Dockerfile
+    environment:
+      #PHPLDAPADMIN_LDAP_HOSTS: "ldap"
+      PHPLDAPADMIN_HTTPS: "false"
+      PHPLDAPADMIN_LDAP_HOSTS: "#PYTHON2BASH:[{'ldap': [{'server': [{'tls': False},{'port': 1389}]},{'login': [{'bind_id': 'cn=admin,dc=example,dc=org'}]}]}]"
+    ports:
+      - "6001:80"
