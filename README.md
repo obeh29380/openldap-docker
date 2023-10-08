@@ -1,4 +1,4 @@
-# openLDAPを試した（bitnami/openldapで）
+# OpenLDAPを試した（bitnami/openldapで）
 
 ## 注意
 
