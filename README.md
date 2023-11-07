@@ -1,4 +1,4 @@
-# OpenLDAPを試した（bitnami/openldapで）
+# OpenLDAPを試す（bitnami/openldapで）
 
 ## 注意
 
@@ -28,15 +28,6 @@
         - Login DN: `cn=admin,dc=example,dc=org`
         - Password: `adminpassword`
 6. 画面左にツリーが表示される。（`+`で展開して、内容を確認する）
-
-## ハマったところ
-
-1. ルートDNに指定したディレクトリが作成されない
-    - `docker-compose.yml`での環境変数設定で、`LDAP_ROOT`で指定したオブジェクトが作成されていなかった。
-    - 今回のように、自分で作成した`.ldif`ファイルで構築する場合、`LDAP_ROOT`で指定したオブジェクトをまず作成する必要がある。
-    - [公式ドキュメント: "Configuration"](https://hub.docker.com/r/bitnami/openldap)にある以下の記述の通り？
-        
-        > You should set LDAP_ROOT to your base to make sure the olcSuffix configured on the database matches the contents imported from the LDIF files.
 
 ## その他メモ
 
